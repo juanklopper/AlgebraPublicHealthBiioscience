@@ -1,0 +1,947 @@
+---
+title: 01 | WHAT YOU NEED TO KNOW TO START LEARNING ALGEBRA
+author:
+    name: Dr Juan H Klopper
+    affiliation: The George Washington University
+title-block-banner: true
+callout-icon: false
+format: 
+    html:
+        toc: true
+        toc-depth: 3
+        toc-title: Content of this document
+        toc-location: left
+        number-sections: true
+        embed-resources: true
+        self-contained-math: true
+        code-copy: true
+        code-line-numbers: true
+        code-link: true
+        html-math-method: katex
+        theme: sandstone
+    pdf:
+        toc: true
+        toc-depth: 3
+        toc-title: Content of this documents
+---
+
+## Introduction
+
+We use numbers every day. We count objects and we consider costs and spending. While counting usually involves the use of whole numbers, we also consider parts of the whole when we cut a pizza into slices. Pizza slices are fractions of the whole and we pay for the pizza using decimal numbers.
+
+Reading the time on our devices, involves numbers. Time involves a very special kind of mathematics called modular arithmetic. A topic that is challenging at first, yet we deal with it so effortlessly, when we use time. If we go to bed at $10$ and sleep for $8$ hours, we know that $10+8=6$.
+
+Numbers are everywhere in the life sciences. We count, add, multiply, calculate means and standard deviations. The list is endless.
+
+In this notebook, we explore basic number types and arithmetic.
+
+## Objectives
+
+### Learning objectives
+
+- Consider your prior knowledge of numbers and realize how useful they are
+- Cement your understanding of numbers that can be used in calculations
+
+### Coding objectives
+
+- Use Python as a calculator for arithmetical operations
+- Extend the functionality of Python by using the math module
+
+## Different types of numbers
+
+We classify numbers into different categories. These categories are so distinct, that we given them special names and symbols.
+
+### Natural numbers
+
+The simplest and most intuitive category is the counting numbers, called the __natural numbers__. We use the symbol $\mathbb{N}$ to denote all the natural numbers. To sound more like a mathematician, we say that all the natural numbers are elements or members of a set. A __set__ is any collection of objects. With respect to numbers, the elememts are just that, numbers.
+
+Because we consider the different categories of numbers as sets, we use set notation to indicate the elements of a set. In the case of natural numbers, we have @eq-naturals.
+
+$$
+\mathbb{N} = \{ 1,2,3,4, \ldots \}
+$$ {#eq-naturals}
+
+::: {.callout-caution}
+## Information
+Mathematics is a long words, so we will just use the word _math_. We are all mathematicians, so instead of referring to mathematicians, we will just refer to ourselves and use the words _us_ and _we_.
+:::
+
+In math, as shown in @eq-naturals, we put the elements of a set in curly braces. Each member (number) is separated by a comma. We also see an set of ellipses, $\ldots$. Intuitively, we read this as a continuation along, or, following the recipe of elements, before the elippses. This indicates a continuation of the numbers. The numbers never stop. The $\ldots$ at the end of the list of elements indicate infinity. The members of $\mathbb{N}$ (meaning the set of natural numbers) go to infinity. We refer to the number of elements in $\mathbb{N}$ as the __cardinality__ or __size__ of the set. In the case of $\mathbb{N}$, we say that the set is countably __infinite__. We can start the count, but it never ends.
+
+Some of use add the number (element) $0$ to the natural numbers. To avoid any confusion, we use the symbol $\mathbb{N}_{0}$ when we refer to the set of natural numbers that include $0$, shown in @eq-naturals0.
+
+$$
+\mathbb{N}_{0} = \{ 0,1,2,3,4, \ldots \}
+$$ {#eq-naturals0}
+
+In many cases, we want to consider a range of natural numbers. Age is a wonderful example, if we caputure peoples' ages in years. In fancy terms we would say _the unit of measurement of age is years_.
+
+We consider a baby in its first year of life as being $0$ years old. Most humans do not live beyond $100$ years of age, let alone an infinite number of years. Age can be expressed as a natural number in an interval. An interval (of ages) has a minimum and a maximum value. In @eq-interval we use ellipses do denote the we follow the _recipe_ up until a maximum number. In this case, $10$. We use the notation in @eq-interval simply to save some space.
+
+$$
+\{ 1,2,3,4, \ldots , 10 \}
+$$ {#eq-interval}
+
+To sound like mathematicians we note that there is an order to the symbols that we use to denote numbers. We know that $5$ is larger than $2$. In fact ordering is an imporant  and complicated topic in mathematics. Even so, we have a natural intuition for order and make use of it all the time.
+
+It is typical to use a lowercase letter as a symbol for an arbitrary number. For natural numbers we typically use the symbols $i$, $j$, $k$, and $n$. In human research studies, we have a number of participants in a study. This number of people is referred to as the sample size. In many calculations, we would use the symbols $n$ to denoted a sample size of $n$. The symbol $n$ takes on a specific value depending on how many people are in our study.
+
+Finally, we visualize the natural numbers (at least the first few) as markers on the $x$-axis of the familiar Cartesian plane (mutually perpendicular lines), shown in @fig-naturalnumbers.
+
+
+```{python}
+#| echo: false
+#| label: fig-naturalnumbers
+#| fig-cap: "Natural numbers"
+
+from matplotlib import pyplot
+import numpy
+
+x = range(10)
+y = numpy.repeat(0, 10)
+
+pyplot.scatter(
+    x=x,
+    y=y,
+    s=60,
+    marker='o',
+    alpha=.8,
+    lw=1
+)
+pyplot.grid(color='0.5')
+for pos in ['right', 'top', 'bottom', 'left']:
+    pyplot.gca().spines[pos].set_visible(False)
+```
+
+### Integers
+
+The __integers__ are also whole numbers. The set of integers includes $0$ and all the negative counterparts of the natrual numbers. In @eq-integers we list the integers. We make use of ellipses again to indicate infinity. This time towards both positive and negative infinity.
+
+$$
+\mathbb{Z} = \{ \ldots , -3,-2,-1,0,1,2,3, \ldots \}
+$$ {#eq-integers}
+
+Arbitrary integers are usually denoted by lowercase letters such as $a$, $b$, $c$, $p$, and $q$.
+
+As with natural numbers, there are an infinite number of integers, and we can also specify an interval or intervals of integers.
+
+### Rational numbers
+
+We use the term __rational number__, denoted by the symbol $\mathbb{Q}$, when we refer to ratios. A ratio involves division. We divide one integer into another integer. To make our lives easier, we write $12 \div 3$ as in @eq-fraction.
+
+$$
+\frac{12}{3}
+$$ {#eq-fraction}
+
+The top number in @eq-fraction is the __numerator__ and the bottom number is the __denominator__.
+
+While we had a numerator that was larger than the denominator in @eq-fraction, the word fraction is typically reserved for cases in which the numerator is smaller than the denominator. We consider a fraction of the whole. If we have are investigating $100$ people and $53$ of them are ill, we can concern ourlselves with the fraction of the whole (all $100$ people) that are ill. In @eq-fraction53100 we see the rational number that expresses the fraction of the whole in our example.
+
+$$
+\frac{53}{100}
+$$ {#eq-fraction53100}
+
+Using arbitrary integers, $p$ and $q$, we write a generic rational number in @eq-genericinteger.
+
+$$
+\frac{p}{q}
+$$ {#eq-genericinteger}
+
+Very importantly, we remember from school that we cannot divide by $0$, shown in @eq-divide0. We cannot divide a whole into $0$ parts.
+
+$$
+\frac{p}{0} = \text{not defined}, \text{ so we write } \frac{p}{q}, \text{ where } q \ne 0
+$$ {#eq-divide0}
+
+Another well-known and used concept from school is the expression of rational numbers as decimals. We see a very simple example in @eq-half, where we divide $1$ by $2$, in other words, we divide the whole into $2$ and consider $1$ of the two parts, that is, a half of the whole.
+
+$$
+\frac{1}{2} = 0.5
+$$ {#eq-half}
+
+Prices are displayed in decimal format. A baguette might cost $\$3.50$. The cost is $3$ whole dollars and one half of a dollar.
+
+Some decimals have infinite _places_ after the decimal point. A third, shown in @eq-third, is one such example. The bar over the $3$ indicates that the pattern of $3$'s continue forever.
+
+$$
+\frac{1}{3} = 0.333333333 \ldots = 0.\bar{3}
+$$ {#eq-third}
+
+### Irrational numbers
+
+An __irrational number__ is a number that cannot be expressed as a rational number. We cannot write it by placing an integer in the numerator and denominator as with a rational number.
+
+There are quintessential example we used every day. The square root of $2$ or $\sqrt{2}$, $\pi$, and Euler's number, $e$, are three beautiful examples.
+
+We write decimal number approximations to these irrational numbers. These approximations have a few decimal places and then we terminate the list by rounding off. There is no fixed pattern to the decimal numbers as with @eq-third.
+
+As you can imagine, there are an infinite number of irrational  numbers.
+
+### Real numbers
+
+All the integers, rational numbers, and irrational numbers together make up the real numbers. The set of real numbers are denoted by the symbol, $\mathbb{R}$.
+
+As a collection of three catgeories of infinite numbers, there are an infinite number of reals numbers.
+
+## Arithmetic
+
+Arithmetic refers to operations we carry out on numbers. We are very familar with most of these operations. Operations take numbers, combine them in some way, and returns another number.
+
+### Addition
+
+Additions adds two or more numbers.
+
+Computers are very good with addition. In the code cell below, we see the addition of three numbers, $3+8+4$. Spaces between characters are not a requieremt for Python, but they make the reading easier.
+
+Arithmetic
+```{python}
+3 + 8 + 4
+```
+
+The result, $15$ is printed to the screen.
+
+### Subtraction
+
+We are also very familiar with subtraction. below, we subtract $4$ form $10$, or $10-4$.
+
+```{python}
+10 - 4
+```
+
+We see the result in $6$.
+
+
+### Multiplciation
+
+Most computer languages use the star symbol, usually a part of the `8` key on most keyboards to do multiplication. Below, we multiply $4$ and $3$, or $4 \times 3$.
+
+```{python}
+4 * 3
+```
+
+We see the result is $12$.
+
+### Division
+
+Division gives us rational numbers. Rational numbers are very useful in that we use them as fractions and ratios. In a fraction or a ratio, we have a numerator and a denominator as we discussed in the section on rational numbers.
+
+Most computer languages use the forward slash symbol, `/`, to indicate division. Below, we calculate the expression in @eq-div412, where $4$ is the numerator and $12$ is the denominator. In terms of division, we also use the term __divisor__ for the denominator.
+
+$$
+4 \div 12 = \frac{4}{12}
+$$ {#eq-div412}
+
+```{python}
+4 / 12
+```
+
+The result is a third. Python expresses a third as a decimal approximation, showing the first few decimal places.
+
+Division can involve divisions in either the numerator or the denominator. In @eq-fractionsfractions, we note the familiar _flipping of the denominator_, where all of $a,b,c,d$ are integers and neither $b$ or $c$ are $0$.
+
+$$
+\frac{\frac{a}{b}}{\frac{c}{d}} = \frac{a}{b} \times \frac{d}{c} = \frac{a \times d}{b \times c}
+$$ {#eq-fractionsfractions}
+
+::: {.callout-note}
+## Task
+
+Calculate the following, all of which indicate division.
+
+$$
+\begin{align}
+&\frac{12}{3} \tag{1} \\ \notag \\ 
+&\frac{4}{\frac{2}{7}} \tag{2}
+\end{align}
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+$$
+\begin{align}
+&\frac{12}{3} = 4 \tag{1} \\ \notag \\ 
+&\frac{4}{\frac{2}{7}} = \frac{\frac{4}{1}}{\frac{2}{7}} = \frac{4}{1} \times \frac{7}{2} = \frac{28}{2} = 14 \tag{2}
+\end{align}
+$$
+:::
+
+We will discover more about division and fractions later in this notebook.
+
+### Order of arithmetical operations
+
+In general, we have that division and multiplication is completed before addition and subtraction. In $3 + 4 \times 2$, we will have multiplication of $4$ and  $2$ first and then the addition of $3$, with the answer being $8$.
+
+We can control the order of operation by using parentheses. If we wanted addition to be done first in the example above, we would have $(3 + 4) \times 2 = 7 \times 2 = 14 \ne 8$ as before.
+
+::: {.callout-note}
+## Taks
+
+Calculate the following.
+
+$$
+\frac{4 + 30 \times \frac{1}{2} + 1}{\frac{1}{10}} \tag{1}
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+$$
+\begin{align}
+\frac{4 + 30 \times \frac{1}{2} + 1}{\frac{1}{10}} &= \frac{4 + 15 + 1}{\frac{1}{10}} \notag \\ \notag \\ 
+&= \frac{20}{\frac{1}{10}} \notag \\ \notag \\ 
+&= 20 \times 10 \notag \\ \notag \\ 
+&= 200 \tag{1}
+\end{align}
+$$
+:::
+
+### Powers
+
+Powers are a simple way to write multiplication of the same number by itself. Most of us are familiar with the fact that $3 \times 3 = 3^{2} = 9$. We see a general case in @eq-powers , where we multiply $a$ with itself $n$ times. Since $n$ is an arbirary natural number, we use ellipses, since we are not quite sure what value $n$ holds. That is why we use the term _generalization_.
+
+$$
+a^{n} = a \times a \times a \times \ldots \times a, \; (n \text{ times multiplication})
+$$ {#eq-powers}
+
+In @eq-powers, we refer to $a$ as the base and $n$ as the power.
+
+There are three special cases. When $n=1$ we have the original number $a$, and we write $a^{1}=a$. When $n=0$, we have that $a^{0}=1$. When $a=0$, then $0^{n}=0$. The only exception is when both $a$ and $n$ are $0$. In fact $0^{0}$ is not defined. By _not defined_ we mean the answer does not exist. It is nonsensical to multiply $0$ by itself $0$ times.
+
+::: {.callout-note}
+## Task
+
+Calculate the following powers.
+
+$$
+\begin{align}
+&3^{4} \tag{1} \\ \notag \\ 
+&5^{3} \tag{2} \\ \notag \\
+&3^{5} \tag{3}
+\end{align}
+$$
+:::
+
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+$$
+\begin{align}
+&3^{4} = 3 \times 3 \times 3 \times 3 = 81 \tag{1} \\ \notag \\ 
+&5^{3} = 5 \times 5 \times 5 = 125 \tag{2} \\ \notag \\ 
+&3^{5} = 3 \times 3 \times 3 \times 3 \times 3 = 243 \tag{3} \\ \notag \\ 
+\end{align}
+$$
+:::
+
+In Python we use double asterisks, `**`. In the code cell below, we see the solutions to the example problems in the task above.
+
+```{python}
+3**4
+```
+
+```{python}
+5**3
+```
+
+```{python}
+3**5
+```
+
+Powers give us roots too. If we consider @eq-roots, we have roots. Most notably, when $n=2$, we have the familiar square root and when $n=3$ we have the cube root.
+
+$$
+a^{\frac{1}{n}} = \sqrt[n]{a}
+$$ {#eq-roots}
+
+In general, we refer to the $n^{\text{th}}$ root. If the $n^{\text{th}}$ of $a$ is some number $x$, we mean that $x$ multiplied by itself $n$ times, gives us $a$.
+
+::: {.callout-note}
+## Task
+
+Calculate the following roots.
+
+$$
+(1)\, \sqrt[2]{9} \text{ and }(2)\, \sqrt[3]{27} 
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+$$
+\begin{align}
+&\sqrt[2]{9} = 3 \text{, since } 3 \times 3 = 9\tag{1} \\ \notag \\ 
+&\sqrt[3]{27} = 3 \text{, since } 3 \times 3 \times 3 = 27 \tag{2}
+\end{align}
+$$
+:::
+
+In Python, we have modules and packages that greatly expand the use of the language by importing extra functionality. Such modules and packages are imported using the `import` function.
+
+```{python}
+import math
+```
+
+Python uses entities called functions to perform tasks. A function has a name, followed by a pair of parentheses. We pass information to the function so that it can perform its task. The information is termed __arguments__ or __parameters__. Python has many inbuilt functions. Modules and packages have many more. The math module has many mathematical functions, and also constants.
+
+Below, we use the `sqrt` function in the math module to calculate the square root of $9$. Since the `sqrt` function is in the imported math module, we have to reference the module by name. A period is used after the module name, before specifying the function name.
+
+```{python}
+math.sqrt(9)
+```
+
+With the equivalent notation in @eq-equivpower, we can calculate roots using powers.
+
+$$
+\sqrt[n]{a} = a^{\frac{1}{n}}
+$$ {#eq-equivpower}
+
+We calculate $\sqrt[2]{9}$ using Python powers below, without using the math module.
+
+```{python}
+9**(1/2)
+```
+
+The final consideration with respect to powers can be seen in @eq-negpowers, where $n$ is a natural number (meaning that it is positive).
+
+$$
+a^{-n} = \frac{1}{a^{n}}
+$$ {#eq-negpowers}
+
+In @eq-negpowersex we see an example, where $a=2$ and $n=1$.
+
+$$
+2^{-1} = \frac{1}{2^{1}} = \frac{1}{2}
+$$ {#eq-negpowersex}
+
+### Exponent
+
+When considering powers, we have the special case with a base $a=e$, where $e$ is Euler's number. The math module holds values for constants such as $\pi$ and $e$. Below, we print out the first few decimnal palces of the irrational number $e$. Note that `e` is not a function, but a constant and we do not use parentesis.
+
+```{python}
+math.e
+```
+
+The math module also holds a function `exp`. The `exp` function allows us to calculate the exponent $e^{n}$. We use $e^{3}$ as an example.
+
+```{python}
+math.exp(3)
+```
+
+With $a=e$ being a positive number, we have that $e^{x}$, where $x$ is any real number, is always positive, which we note in @fig-exponentplot. Irrespective of the value of $x$, the graph is always positive (above the $x$ axis).
+
+```{python}
+#| echo: false
+#| label: fig-exponentplot
+#| fig-cap: "Exponent"
+
+xvals = numpy.arange(-3, 3, 0.01);
+pyplot.plot(
+    xvals,
+    numpy.exp(xvals),
+    '-'
+)
+pyplot.title('Exponent is always positive')
+pyplot.grid(color='0.5')
+for pos in ['right', 'top', 'bottom', 'left']:
+    pyplot.gca().spines[pos].set_visible(False)
+```
+
+### Logarithms
+
+Logarithms are interseting and useful operations that we perform on numbers. A logarithm (or log for short) has a base. We see a logarithm base $10$ in @eq-log10.
+
+$$
+\log_{10}{a} = b
+$$ {#eq-log10}
+
+We intepret $b$ in @eq-meaningofb.
+
+$$
+10^{b} = a
+$$ {#eq-meaningofb}
+
+As an example, we note @eq-log10ex.
+
+$$
+\log_{10}{100} = 2, \text{ since } 10^{2} = 100
+$$ {#eq-log10ex}
+
+The `log10` function in the math module calculates calculate the log base $10$.
+
+```{python}
+math.log10(100)
+```
+
+A very useful base is $e$. We have a special name for $\log_{e}$, which is the natural logarithm, sometimes written as $\ln$. Many texbooks just use the word log, when they refer to the natural logarith and specify a base only when it is not $e$. Python does the same. The `log` function in the math module calculates the natural log. Below, we calculate $\log{\left( 10 \right)}$.
+
+```{python}
+math.log(10)
+```
+
+For any log base, we have that the log of $1$ is $0$. This is so because any number (other than $0$) raised to the power $0$ is $1$.
+
+```{python}
+math.log(1)
+```
+
+We cannot consider the log of $0$ or any negative number. As we have discussed with $a=e$, the any poer of a positive number is always positive. We see this in @fig-logpos
+
+```{python}
+#| echo: false
+#| label: fig-logpos
+#| fig-cap: "Logarithms are only defined for positive values"
+xvals = numpy.arange(0.01, 3, 0.01);
+pyplot.plot(
+    xvals,
+    numpy.log10(xvals),
+    '-'
+)
+pyplot.title('The logarithm is only defined for positive values')
+pyplot.grid(color='0.5')
+for pos in ['right', 'top', 'bottom', 'left']:
+    pyplot.gca().spines[pos].set_visible(False)
+```
+
+## Uses of division
+
+### Fractions and ratios
+
+A ratio is calculated usig division. A fraction is also a ratio and is calculated using division. We do reserve the keyword fraction when the numerator is smaller than the denominator. In general, a ratio can have a numerator that is larger than the denominator. We see both, and the fact that we accomplish both calculations by division, in @eq-fractionsratios. In either case, $a$ and $b$ are integers and we always have that $b \ne 0$. We also omit the case where $a=b$, which is simply $1$. We also remeber that if $a=0$, we have that our fraction or ratio is $0$.
+
+$$
+\begin{align}
+&\text{Ratio: }\frac{\text{numerator}}{\text{denominator}} \\ \\
+&\text{Fraction: } \frac{a}{b}, \text{ where } a < b \\ \\
+&\text{Ratio: } \frac{a}{b}, \text{ where } a < b \text{ or } a > b
+\end{align}
+$$ {#eq-fractionsratios}
+
+It is important to understand the basics of fractions and ratios. The basics include the _mechanics_ of the parts of a fraction or a ratio and the comparison of different fractions and ratios.
+
+We have seen that a fraction or a ratio has a numerator and a denominator. A fraction desribes a count of parts of a whole. By parts of the whole, we are referring to the denominator. The numerator describes how many of those parts we count.
+
+Consider any shape, such as a square or a circle. We can divide a shape into equal parts. That would be $b$ equal parts. If $b=2$ then we have divided the shape into halves. If $b=4$, the we have divided the shape into $4$ equally sized parts. This is the value of the denominator.
+
+The numerator, $a$, counts the number of $b$-parts of the whole. In @fig-pie34, we have divided the whole (of a circle) into $b=4$ equal parts (the denominator) and we consider $a=3$ parts (the numerator).
+
+```{python}
+#| echo: false
+#| label: fig-pie34
+#| fig-cap: "Three quarters of the whole"
+
+pyplot.pie(
+    [1, 1, 1, 1],
+    colors=['red', 'red', 'red', 'lightgray'],
+    wedgeprops={"edgecolor":"k",'linewidth': 1}
+)
+pyplot.show()
+```
+
+In @fig-pie8, we visualize the difference between three eights seven eights, seen in @eq-f378. We keep $b=8$ fixed and compare $a=3$ to $a=7$.
+
+$$
+\frac{3}{8} < \frac{7}{8}
+$$ {#eq-f378}
+
+```{python}
+#| echo: false
+#| label: fig-pie8
+#| fig-cap: "Eighths"
+#| fig-subcap:
+#|   - "Three eighths"
+#|   - "Seven eighths" 
+#| layout-ncol: 2
+
+pyplot.pie(
+    [1, 1, 1, 1, 1, 1, 1, 1],
+    colors=['red', 'red', 'red', 'lightgray', 'lightgray', 'lightgray', 'lightgray', 'lightgray'],
+    wedgeprops={"edgecolor":"k",'linewidth': 1}
+)
+pyplot.show()
+
+pyplot.pie(
+    [1, 1, 1, 1, 1, 1, 1, 1],
+    colors=['red', 'red', 'red', 'red', 'red', 'red', 'red', 'lightgray'],
+    wedgeprops={"edgecolor":"k",'linewidth': 1}
+)
+pyplot.show()
+```
+
+In contrast, if we keep $a$ constant and make $b$ larger, we count _fewer_ of the $b$, since there are just more $b$ parts. If we make $b$ smaller, we count _more_ parts, since we have fewer $b$ parts. We visualize the difference in
+In the case of a ratio, we have that $a$ might be larger than $b$. To be clear, fractions are a form or ratios, in that we can also have a ration in which $a<b$. In the case of a ratio where $a>b$, we will counts $a$ number of $b$-parts.
+
+With a good understanding of the parts of a fraction or a ratio, we consider the _mechanics_. By the mechanics we mean, changes in the values of $a$ or $b$, where we consider a change in one, while keeping the other constant.
+
+If we keep $b$ constant and we increase $a$, we are counting more of the parts. The actual _overall_ value that the fraction or ratio describes get bigger. If we decrease $a$, the we have fewer parts and and the overall value gets smaller.
+
+In @fig-pie358, we visualize the difference between three eighths and three fifths, seen in @eq-f358.
+
+$$
+\frac{3}{8} < \frac{3}{5}
+$$ {#eq-f358}
+
+```{python}
+#| echo: false
+#| label: fig-pie358
+#| fig-cap: "Eighths and fifths"
+#| fig-subcap:
+#|   - "Three eighths"
+#|   - "Three fifths" 
+#| layout-ncol: 2
+
+pyplot.pie(
+    [1, 1, 1, 1, 1, 1, 1, 1],
+    colors=['red', 'red', 'red', 'lightgray', 'lightgray', 'lightgray', 'lightgray', 'lightgray'],
+    wedgeprops={"edgecolor":"k",'linewidth': 1}
+)
+pyplot.show()
+
+pyplot.pie(
+    [1, 1, 1, 1, 1],
+    colors=['red', 'red', 'red', 'lightgray', 'lightgray'],
+    wedgeprops={"edgecolor":"k",'linewidth': 1}
+)
+pyplot.show()
+```
+
+Understanding the mechanics, leads us to comparing fractions and ratios. When is one smalelr or larger than the other?
+
+To answer this question, we must have equal $b$ parts. In @eq-f358 we made such a comparison. We can make a direct comparison by _equalling_ $b=8$ and $b=5$. The easiest way to do this is to multiply both by $1$. Multiplying by $1$ does not change a number. All we have to do is write $1$ as a fraction. We do so my choosing the _opposite_ value of $b$, shown in @eq-comparisons. Remembering that we multiply numerator by numerator and denominator by denominator, we no have equal parts $b=40$.
+
+$$
+\begin{align}
+&\frac{3}{8} \times \frac{5}{5} \text{ vs. } \frac{3}{5} \times \frac{8}{8} \\ \\
+&\frac{15}{40} \text{ vs. } \frac{21}{40}
+\end{align}
+$$ {#eq-comparisons}
+
+
+Clearly $15 < 21$ and three eighths is smaller than three fifths.
+
+Depending on the propblem, we can multiply by smaller values. @eq-comparisonsab should show the intuition.
+
+$$
+\begin{align}
+&\frac{3}{8} \text{ vs. } \frac{1}{4} \\ \\
+&\frac{3}{8} \times \frac{1}{1} \text{ vs. } \frac{1}{4} \times \frac{2}{2} \\ \\
+&\frac{3}{8} \text{ vs. } \frac{2}{8}
+\end{align}
+$$ {#eq-comparisonsab}
+
+::: {.callout-note}
+## Task
+
+Compare the fraction and ratio below.
+
+$$
+\begin{align}
+&\frac{4}{9} \text{ vs. } \frac{5}{11} \tag{1} \\ \notag \\ 
+&\frac{9}{4} \text{ vs. } \frac{17}{8} \tag{2}
+\end{align}
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+$$
+\begin{align}
+&\frac{4}{9} \times \frac{11}{11} = \frac{44}{99} <  \frac{5}{11} \times \frac{9}{9} = \frac{45}{99} \tag{1} \\ \notag \\ 
+&\frac{9}{4} \times \frac{2}{2} = \frac{18}{8} > \frac{17}{8} \tag{2}
+\end{align}
+$$
+:::
+
+### Decimal values
+
+We are familiar with teh fact that we can write the fraction one-half as a decimal, $0.5$. We see some examples in @eq-decimals. By putting a bar over a repeating sequence (as in the last example of a third), we can simplify our notation.
+
+$$
+\begin{align}
+&\frac{1}{4} = 0.25 \\ \\ 
+&\frac{1}{10} = 0.1 \\ \\ 
+&\frac{5}{100} = 0.05 \\ \\ 
+&\frac{1}{3} = 0.33333333333 \ldots = 0.\overline{3}
+\end{align}
+$$ {#eq-decimals}
+
+Both in the case of a rational number with a repeating pattern of decimals, or with an irrational number, with an infinite random set of decimal values, computer can only deal with approximations. It can only calculate up to a certain number of decimal places. In mathematics we have an exact representation and a numeric approximation for these numbers. In @eq-approximations we see exact representations and approximations. We use the equal symbol, $=$, when we have equality. We also see the approximate symbol, $\approx$, to denoted that we do not actually have an equality.
+
+$$
+\begin{align}
+&\pi \approx 3.14159265358979 \\
+&\frac{1}{3} = 0.\bar{3} \approx 0.3333333333 \\
+&\frac{5}{7} = 0.\overline{714285} \approx 0.71429
+\end{align}
+$$ {#eq-approximations}
+
+### Simplification
+
+The last important aspect of division indication fractions or ratios, that is to say, rational numbers, is that of simplification.
+
+A fraction or a ratio (or rational number) maintains the same numerical value if we divide both the numerator and denominator by the same number (remembering that we cannot divide by $0$). In @eq-simplifying we divide both numerator and denominator by the same non-zero number $k$.
+
+$$
+\frac{p}{q} = \frac{\frac{p}{k}}{\frac{q}{k}}, \text{ where } p,k \ne 0
+$$ {#eq-simplifying}
+
+In @eq-simplification, we note the equality between six-eights and a three-quarters.
+
+$$
+\frac{6}{8} = \frac{\frac{6}{2}}{\frac{8}{2}} = \frac{3}{4}
+$$ {#eq-simplification}
+
+In the case of six-eigths, we can divide the numberator and the denominator by the same number (and hence not change the value of the fraction). In this case, we can divide both by $2$ to get a quarter. To do the simplification, we made use of the fact that $4$ divides both $6$ and $8$.
+
+We could not divide $3$ and $4$ by another integer that divides both $3$ and $4$. By divides in this case, we mean, division without a remainder, or then, a remainder of $0$.
+
+Consider dividing $11$ by $4$. We know that $4$ does not divide $10$. If we divide $11$ by $4$ and still require this division to produce a whole number, we can at best get $2$ with a remainder of $3$. We see this in @eq-103.
+
+$$
+\frac{11}{4} = 2 \text{ with a remainder of } 3 
+$$ {#eq-103}
+
+We have that $2 \times 4 + 3 = 8 + 3 = 11$, satisfying our division. In more general terms, we note @eq-gen.
+
+$$
+b = c a + r
+$$ {#eq-gen}
+
+If $r=0$, we say that $a$ divides $b$ and $b=ca$, or then, $b$ is a constant multiple of $a$.
+
+::: {.callout-note}
+## Task
+
+Determine which of the following values of $a$ (where $a$ is an integer) divides $21$.
+
+$$
+(1) \,3; \; (2) \, 4; \; (3) \, 5; \; (4) \, 6; \; (5) \, 7; \; (6) \, 8; \; (7) \, 9; \; (8) \, 10
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+$$
+\begin{align}
+&3 \text{ divides } 21 \text{ since } \frac{21}{3} = 7 \tag{1} \\ \notag \\
+&4 \text{ does not divide } 21 \text{ since } \frac{21}{4} = 5 \frac{1}{4} \tag{2} \\ \notag \\
+&5 \text{ does not divide } 21 \text{ since } \frac{21}{5} = 4 \frac{1}{5} \tag{3} \\ \notag \\
+&6 \text{ does not divide } 21 \text{ since } \frac{21}{6} = \frac{7}{2} = 3 \frac{1}{2} \tag{4} \\ \notag \\
+&7 \text{ divides } 21 \text{ since } \frac{21}{7} = 3 \tag{5} \\ \notag \\
+&8 \text{ does not divide } 21 \text{ since } \frac{21}{8} = 2 \frac{5}{8} \tag{6} \\ \notag \\
+&9 \text{ does not divide } 21 \text{ since } \frac{21}{9} = \frac{7}{3} = 2 \frac{1}{3} \tag{7} \\ \notag \\
+&10 \text{ does not divide } 21 \text{ since } \frac{21}{10} = 2 \frac{1}{10} \tag{8}
+\end{align}
+$$
+:::
+
+We can now use our knowledge of division to determine the smallest values in the numerator and denominator for any fraction. We state that we _simplify_ the fraction. In terms of @eq-simplifying, we always search for the largest integer that will divide both the numerator and denominator.
+
+::: {.callout-note}
+## Task
+
+Simplify the following fractions. Use only the positive solution for square roots. Note the last example contains knowledge of work that we have not covered.
+
+$$
+(1)\,\frac{4}{3}; \; (2)\, \frac{2}{8}; \; (3)\, \frac{59}{177}; \; (4)\,\frac{303}{22}; \; (5)\, \frac{15}{100}; \notag \\ (6)\,\frac{5^{2}-4}{7} - \sqrt{18-3^{2}}; \; (7)\, \frac{\sqrt{12}}{\sqrt{3}}
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+$$
+\begin{align}
+&\frac{4}{3} = \frac{4}{3} \tag{1} \\ \notag \\
+&\frac{2}{8} = \frac{1}{4} \text{ (divide numerator and denominator by 2)} \tag{2} \\ \notag \\
+&\frac{59}{177} =\frac{1}{3} \text{ (divide numerator and denominator by 59)} \tag{3} \\ \notag \\ 
+&\frac{303}{22} = \frac{303}{22} \tag{4} \\ \notag \\
+&\frac{15}{100} = \frac{3}{20} \text{ (divide numerator and denominator by 5)} \tag{5} \\ \notag \\
+&\frac{5^{2}-4}{7} - \sqrt{18-3^{2}} = \frac{25-4}{7}-\sqrt{18-9} = \frac{21}{7}-\sqrt{9}=3-3=0 \tag{6} \\ \notag \\
+&\frac{\sqrt{12}}{\sqrt{3}} = \sqrt{\frac{12}{3}} = \sqrt{4} = \pm 2 \tag{7}
+\end{align}
+$$
+
+In the cases $4 \div 3$, there is no number between $1$ and $3$ that divides both $4$ and $3$ and in the case of $303 \div 22$, we have no number from $1$ to $22$ that divides both $303$ and $22$ and we cannot simply the fractions any further.
+:::
+
+## Properties of real numbers
+
+There are five important properties of real numbers. They are the commutative property, the assosciative property, the distriburive property, the identity property, and the inverse property.
+
+### Commutative property
+
+The order of addition and multiplication is commutative. We are familiar with the fact that $3 + 4 = 4 + 3 = 7$ and $3 \times 4 = 4  \times 3 = 12$. This is not the case for subtraction and division. For instance $3-4 \ne 4-3$ and $3 \div 4 \ne 4 \div 3$.
+
+In general, we have @eq-commute.
+
+$$
+\begin{align}
+&a + b = b + a \\ 
+&a \times b = b \times a
+\end{align}
+$$ {#eq-commute}
+
+### Associative property
+
+Addition adn subtraction of real number are associative. We know that $(3 + 4) + 2 = 3 + (4 + 2) = 8$ and that $(3 \times 4) \times 2 = 3 \times (4 \times 2) = 24$. Again, we note that neither subtraction, nor division, is associative. We can see that $(7 - 4) - 2 = 1$ and this is not the same as $7 - (4-2) = 5$. We also have that $(64 \div 8) \div 4 = 2$ is not equal to $64 \div (4 \div 2)=32$.
+
+In general, we have @eq-comparisons. For this property, and all others, we consider $a$, $b$, and $c$, all elememts of the set of real numbers.
+
+$$
+\begin{align}
+&(a + b) + c = a + (b + c)
+&(a \times b) \times c = a \times (b \times c)
+\end{align}
+$$ {#eq-ass}
+
+### Distributive property
+
+With the distrbutive property, we multiply a value to the inidiviual value in a sum. In this ways $2 \times (3 + 4) = (2 \times 3) + (2 \times 4) = 14$. In general, we have @eq-distr.
+
+$$
+a \times (b \times c) = (a \times b) + (a \times c)
+$$ {#eq-distr}
+
+Addition does not distribute over muliplication. We have that $2 + (3 \times 4) = 2 + 12 = 14$. This is not the same as $(2+3) \times (2+4)=30$.
+
+### Indentity properties
+
+The __identity property of addition__ is $0$ since $a + 0 = 0 + a = a$. We do not change the value of $a$ by adding $0$.
+
+The __identity proprety of multplication__ is $1$, since $1 \times a = a \times 1 = a$. We do not change the value of $a$ when multiplying by $1$.
+
+We note the identity properties in @eq-identity.
+
+$$
+\begin{align}
+&a + 0 = 0 + a = a \\ 
+& a \times 1 = 1 \times a = a
+\end{align}
+$$ {#eq-identity}
+
+### Inverse properties
+
+With respect to addition, we say that $-3$ is he __additive inverse__ of $3$, since $3 + (-3) = 0$, the additive identity.
+
+With respect to multiplication, we have that $\frac{1}{3}$ is the __multiplicative inverse__ $3 \times \frac{1}{3} = 1$, the multiplicative identity.
+
+In general, we have the additive inverse and the multiplicative inverses for $a$ in @eq-inverses. In the case of the multiplicative inverse, we have that $a \ne 0$.
+
+$$
+\begin{align}
+&a + (-a) = 0 \\ 
+&a \times \frac{1}{a} = 1
+\end{align}
+$$ {#eq-inverses}
+
+::: {.callout-note}
+## Task
+Use the properties of real number to find the values of $x$ that make the following equations hold.
+
+$$
+\begin{align}
+&3 \times \frac{1}{x} = 1 \tag{1} \\ \notag \\ 
+&2 + x = 0 \tag{2} \\ \notag \\
+&4 + x = 5 + 4 \tag{3} \\ \notag \\ 
+&3 \times 8 = x \times 3 \tag{4}
+\end{align}
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+
+$$
+\begin{align}
+&3 \times \frac{1}{x} = 1 \rightarrow x = 3 \tag{1} \\ \notag \\ 
+&2 + x = 0 \rightarrow x = -2  \tag{2} \\ \notag \\
+&4 + x = 5 + 4 \rightarrow x = 5 \tag{3} \\ \notag \\ 
+&3 \times 8 = x \times 3 \rightarrow x = 8 \tag{4}
+\end{align}
+$$
+:::
+
+## Algebraic expression
+
+A mathematical calculation that does not involve a function or an equation or an inequality, is an __expression__. It is a collection of constants and variables joined together by the arithmetical operations of addition, subtraction, multiplication, and division. In @eq-expression, we see an example of an expression. The values $5$ and $4$, and $-2$ are __constants__, in that the values are fixed, and the symbols $x$ and $y$ are __variables__, in that their values can vary.
+
+$$
+\frac{(3 \times x) + y + (-2)}{4}
+$$ {#eq-expression}
+
+::: {.callout-note}
+## Task
+
+List the constants and the variables in the following expressions.
+
+$$
+\begin{align}
+&3xy \tag{1} \\ \notag \\ 
+&2 \pi r \tag{2} \\ \notag \\ 
+&\sqrt{4 e} \tag{3}
+\end{align}
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+| Expression  | Constant(s) | Variables  | Question |
+|:------------|:------------|:-----------|:---------|
+| $3xy$       | 3           | $x,y$      | (1)      |
+| $2 \pi r$   | $2 \pi$     | $r$        | (2)      |
+| $\sqrt{4e}$ | $4, e$      | None       | (3)      |
+:::
+
+We can substitute an appropriate value into a variable and calculate a value for an expression (if all the variables are given appropriate values).
+
+::: {.callout-note}
+## Task
+
+Subsitite the given values of the variables into the expressions and provide a value for the expression.
+
+$$
+\begin{align}
+&r=1 \text{ for } 2 \pi r \tag{1} \\ \notag \\ 
+&x=2, \, y=7 \text{ for } \frac{14x}{y} \tag{2} \\ \notag \\ 
+&x=3 \text{ for } \left( \frac{7}{x-3} \right)^{2} \tag{3}
+\end{align}
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+$$
+\begin{align}
+&r=1 \text{ for } 2 \pi r \rightarrow 2 \pi (1) = 2 \pi \tag{1} \\ \notag \\ 
+&x=2, \, y=7 \text{ for } \frac{14x}{y} \rightarrow \frac{14 \times 2}{7} = 4 \tag{2} \\ \notag \\ 
+&x=3 \text{ for } \left( \frac{7}{x-3} \right)^{2} \rightarrow \left( \frac{7}{3-3} \right)^{2} = \left( \frac{7}{0} \right)^{2} = \text{ undefined} \tag{3}
+\end{align}
+$$
+
+In the case of the last example, $x$ cannot take on a value of $3$, and we would exclude $3$ from the possible values of the variable $x$, and write $x \ne 3$.
+:::
+
+Expressions are commonly used in formulas. We have already seen the formula for the circumeference of a circle, $2 \pi r$, where $r$ is the radius of the circle, in an example problem above.
+
+In biostatitics, we often transform the value of a variabe, $X$, using the formula for $Z$, shown in @eq-ztransform, where $\mu$ is the mean and $\sigma$ is the standard deviation.
+
+$$
+\frac{X - \mu}{\sigma}
+$$ {#eq-ztransform}
+
+For a variable value of $X=30$, a population mean, $\mu=20$, and a population standard deviation, $\sigma=2$, we would have @eq-Zsolve.
+
+$$
+\frac{30-20}{2} = \frac{10}{2} = 5
+$$ {#eq-Zsolve}
+
