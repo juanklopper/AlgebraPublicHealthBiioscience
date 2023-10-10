@@ -1,2 +1,2 @@
-# Algebra for Public Health and Biomedicine Students
+# Algebra for Public Health and Bioscience Students
 GitHub repo for algebra courseware
